@@ -1,0 +1,376 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+#cookie {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+#cookie:active {
+    transform: scale(0.95);
+}
+
+.cookie-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.cookie-button:active {
+    transform: scale(0.85);
+}
+
+.shop {
+    margin-top: 20px;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.shop div {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shop span {
+    color: white;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#score, #multiplier {
+    font-size: 24px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+/* Effet lampe de poche */
+#flashlight {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: multiply;
+    mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), transparent 150px, black 250px);
+    -webkit-mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), transparent 150px, black 250px);
+}
+
+/* Overlay du popup */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 10000;
+    border: 2px solid #4CAF50;
+    text-align: center;
+}
+
+.popup button {
+    margin: 10px;
+    padding: 5px 15px;
+}
+
+/* Roue */
+.wheel-container {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    text-align: center;
+    z-index: 10000;
+}
+
+#wheel {
+    transform: scale(1.5);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Bouton de spin */
+#spinWheel {
+    background-color: #8B0000;
+}
+
+#spinWheel:hover {
+    background-color: #A52A2A;
+}
+
+/* Notification de récompense */
+.reward-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    z-index: 10001;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Supprimer toutes les classes liées aux producteurs */
+/* ...existing code... */
+
+.producers,
+.producer,
+.producer-icon,
+.producer-info,
+.button-icon {
+    display: none;
+}
+
+/* ...existing code... */
+
+.producers {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.producer {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+    pointer-events: all;
+    width: 200px;
+}
+
+.producer img {
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: 0 auto;
+}
+
+.producer-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#ovenProducer {
+    top: 10%;
+    left: 10px;
+}
+
+#factoryProducer {
+    top: 40%;
+    left: 10px; /* Changé de right à left */
+}
+
+#cityProducer {
+    bottom: 10%;
+    right: 10px; /* Changé de left à right */
+}
+
+.producer button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px 15px;
+}
+
+.producer span {
+    display: block;
+    margin-top: 5px;
+    color: #fff;
+}
+
+.producer-icon {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.producer-icon img {
+    width: 64px;
+    height: 64px;
+    transition: transform 0.3s ease;
+}
+
+.producer:hover .producer-icon img {
+    transform: scale(1.1);
+}
+
+.button-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.shop-item {
+    position: relative; /* Change to fixed when moved */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+    transition: all 0.3s ease;
+}
+
+.multiplier-shop, .scroll-shop {
+    position: relative;
+}
+
+.multiplier-shop, .scroll-shop, .wheel-shop {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.wheel-shop {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    transition: all 0.5s ease-out;
+    z-index: 1000;
+}
+
+.initial-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Faux curseur */
+.fake-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 10000;
+    transition: transform 0.1s;
+    filter: blur(2px) drop-shadow(0 0 2px rgba(255,255,255,0.8));
+}
+
+.fake-cursor::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    transform: translate(5px, 5px);
+}
+
+/* ...existing code... */
+
+.admin-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+    z-index: 10001;
+    color: white;
+}
+
+.admin-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-panel h2 {
+    margin-bottom: 15px;
+    color: #4CAF50;
+}
+
+.admin-panel label {
+    cursor: pointer;
+    user-select: none;
+}
+
+.admin-panel input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#closeAdmin {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+}
+
+/* ...existing code... */
